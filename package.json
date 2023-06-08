@@ -1,6 +1,4 @@
 {
-  "name": "myContacts",
-  "packageManager": "yarn@3.6.0",
   "dependencies": {
     "express": "^4.18.2"
   }
