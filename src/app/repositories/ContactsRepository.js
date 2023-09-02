@@ -7,7 +7,10 @@ class ContactRepository {
     const direction = orderBy.toUpperCase() === 'DESC' ? 'DESC' : 'ASC';
 
     const rows = await database.query(`
-        SELECT * FROM contacts ORDER BY name ${direction}
+        SELECT contacts.*, categories.name AS category_name
+        FROM contacts
+        LEFT JOIN categories ON contacts.category_id = categories.id
+        ORDER BY contacts.name ${direction}
     `);
     return rows;
   }
