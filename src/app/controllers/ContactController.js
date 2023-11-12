@@ -6,7 +6,6 @@ class ContactController {
     const { orderBy } = request.query;
     // list all registers
     const contacts = await ContactsRepository.findAll(orderBy);
-    response.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
     response.json(contacts);
   }
 
@@ -17,9 +16,8 @@ class ContactController {
     const contact = await ContactsRepository.findById(id);
 
     if (!contact) {
-      return response.status(404).json({ error: 'User Not Found' });
+      return response.status(404).json({ error: 'Contact Not Found' });
     }
-
     return response.json(contact);
   }
 
@@ -39,7 +37,7 @@ class ContactController {
       name, email, number, category_id,
     });
 
-    return response.status(200).json(contact);
+    return response.status(201).json(contact);
   }
 
   async update(request, response) {
